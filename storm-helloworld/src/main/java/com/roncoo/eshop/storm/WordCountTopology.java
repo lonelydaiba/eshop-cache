@@ -208,6 +208,7 @@ public class WordCountTopology {
 		Config config = new Config();
 
 
+
 	
 		// 说明是在命令行执行，打算提交到storm集群上去
 		if(args != null && args.length > 0) {
