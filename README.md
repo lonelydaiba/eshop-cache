@@ -6,3 +6,5 @@ eshop-cache 缓存服务
 eshop-inventory 库存服务
 
 eshop-hello helloCount 模拟storm流计算demo
+
+eshop-storm 
