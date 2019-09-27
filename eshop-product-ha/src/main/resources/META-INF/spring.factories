@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.daily.eshop.product.start.UserAutoConfiguration
