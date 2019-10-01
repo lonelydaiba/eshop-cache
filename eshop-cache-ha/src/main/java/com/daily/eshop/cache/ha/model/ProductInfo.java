@@ -2,110 +2,146 @@ package com.daily.eshop.cache.ha.model;
 
 /**
  * 商品信息
+ * @author Administrator
+ *
  */
 public class ProductInfo {
-    /**
-     * return "{\"id\": " + productId + ", \"name\": \"iphone7手机\", \"price\": 5599, \"pictureList\":\"a.jpg,b.jpg\", \"specification\": \"iphone7的规格\", \"service\": \"iphone7的售后服务\", \"color\": \"红色,白色,黑色\", \"size\": \"5.5\", \"shopId\": 1, \"modifiedTime\": \"2017-01-01 12:00:00\"}";
-     *
-     */
 
-    private Long id;
+	private Long id;
+	private String name;
+	private Double price;
+	private String pictureList;
+	private String specification;
+	private String service;
+	private String color;
+	private String size;
+	private Long shopId;
+	private String modifiedTime;
+	private Long cityId;
+	private String cityName;
+	private Long brandId;
+	private String brandName;
+	
+	public ProductInfo() {
+		
+	}
+	
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public Double getPrice() {
+		return price;
+	}
+	public void setPrice(Double price) {
+		this.price = price;
+	}
 
-    private String name;
+	public String getPictureList() {
+		return pictureList;
+	}
 
-    private Integer price;
+	public void setPictureList(String pictureList) {
+		this.pictureList = pictureList;
+	}
 
-    private String pictureList;
+	public String getSpecification() {
+		return specification;
+	}
 
-    private String specification;
+	public void setSpecification(String specification) {
+		this.specification = specification;
+	}
 
-    private String service;
+	public String getService() {
+		return service;
+	}
 
-    private String color;
+	public void setService(String service) {
+		this.service = service;
+	}
 
-    private String size;
+	public String getColor() {
+		return color;
+	}
 
-    private Long shopId;
+	public void setColor(String color) {
+		this.color = color;
+	}
 
-    private String modifiedTime;
+	public String getSize() {
+		return size;
+	}
 
-    public Long getId() {
-        return id;
-    }
+	public void setSize(String size) {
+		this.size = size;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public Long getShopId() {
+		return shopId;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public void setShopId(Long shopId) {
+		this.shopId = shopId;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public String getModifiedTime() {
+		return modifiedTime;
+	}
 
-    public Integer getPrice() {
-        return price;
-    }
+	public void setModifiedTime(String modifiedTime) {
+		this.modifiedTime = modifiedTime;
+	}
+	
+	public Long getCityId() {
+		return cityId;
+	}
 
-    public void setPrice(Integer price) {
-        this.price = price;
-    }
+	public void setCityId(Long cityId) {
+		this.cityId = cityId;
+	}
+	
+	public String getCityName() {
+		return cityName;
+	}
 
-    public String getPictureList() {
-        return pictureList;
-    }
+	public void setCityName(String cityName) {
+		this.cityName = cityName;
+	}
 
-    public void setPictureList(String pictureList) {
-        this.pictureList = pictureList;
-    }
+	public Long getBrandId() {
+		return brandId;
+	}
 
-    public Long getShopId() {
-        return shopId;
-    }
+	public void setBrandId(Long brandId) {
+		this.brandId = brandId;
+	}
 
-    public void setShopId(Long shopId) {
-        this.shopId = shopId;
-    }
+	public String getBrandName() {
+		return brandName;
+	}
 
-    public String getSpecification() {
-        return specification;
-    }
+	public void setBrandName(String brandName) {
+		this.brandName = brandName;
+	}
 
-    public void setSpecification(String specification) {
-        this.specification = specification;
-    }
-
-    public String getService() {
-        return service;
-    }
-
-    public void setService(String service) {
-        this.service = service;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
-
-    public String getSize() {
-        return size;
-    }
-
-    public void setSize(String size) {
-        this.size = size;
-    }
-
-    public String getModifiedTime() {
-        return modifiedTime;
-    }
-
-    public void setModifiedTime(String modifiedTime) {
-        this.modifiedTime = modifiedTime;
-    }
+	@Override
+	public String toString() {
+		return "ProductInfo [id=" + id + ", name=" + name + ", price=" + price
+				+ ", pictureList=" + pictureList + ", specification="
+				+ specification + ", service=" + service + ", color=" + color
+				+ ", size=" + size + ", shopId=" + shopId + ", modifiedTime="
+				+ modifiedTime + ", cityId=" + cityId + ", cityName="
+				+ cityName + ", brandId=" + brandId + ", brandName="
+				+ brandName + "]";
+	}
+	
 }

@@ -97,7 +97,7 @@ public class HttpClientUtils {
             httpPost = new HttpPost(url);  
             
             //设置参数  
-            List<NameValuePair> list = new ArrayList<NameValuePair>();
+            List<NameValuePair> list = new ArrayList<NameValuePair>();  
             Iterator iterator = map.entrySet().iterator();  
             while(iterator.hasNext()){  
                 Entry<String,String> elem = (Entry<String, String>) iterator.next();  
