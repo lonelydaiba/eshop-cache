@@ -2,6 +2,10 @@ package com.roncoo.eshop.cache.service.impl;
 
 import javax.annotation.Resource;
 
+import com.roncoo.eshop.cache.hystrix.command.GetProductInfoFromReidsCacheCommand;
+import com.roncoo.eshop.cache.hystrix.command.GetShopInfoFromReidsCacheCommand;
+import com.roncoo.eshop.cache.hystrix.command.SaveProductInfo2ReidsCacheCommand;
+import com.roncoo.eshop.cache.hystrix.command.SaveShopInfo2ReidsCacheCommand;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -83,49 +87,41 @@ public class CacheServiceImpl implements CacheService {
 	public ShopInfo getShopInfoFromLocalCache(Long shopId) {
 		return null;
 	}
-	
+
 	/**
 	 * 将商品信息保存到redis中
-	 * @param productInfo 
+	 * @param productInfo
 	 */
 	public void saveProductInfo2ReidsCache(ProductInfo productInfo) {
-		String key = "product_info_" + productInfo.getId();
-		jedisCluster.set(key, JSONObject.toJSONString(productInfo));  
+		SaveProductInfo2ReidsCacheCommand command = new SaveProductInfo2ReidsCacheCommand(productInfo);
+		command.execute();
 	}
-	
+
 	/**
 	 * 将店铺信息保存到redis中
-	 * @param productInfo 
+	 * @param shopInfo
 	 */
 	public void saveShopInfo2ReidsCache(ShopInfo shopInfo) {
-		String key = "shop_info_" + shopInfo.getId();
-		jedisCluster.set(key, JSONObject.toJSONString(shopInfo));  
+		SaveShopInfo2ReidsCacheCommand command = new SaveShopInfo2ReidsCacheCommand(shopInfo);
+		command.execute();
 	}
-	
+
 	/**
 	 * 从redis中获取商品信息
-	 * @param productInfo 
+	 * @param productId
 	 */
 	public ProductInfo getProductInfoFromReidsCache(Long productId) {
-		String key = "product_info_" + productId;
-		String json = jedisCluster.get(key);
-		if (json != null) {
-			return JSONObject.parseObject(json, ProductInfo.class);
-		}
-		return null;
+		GetProductInfoFromReidsCacheCommand command = new GetProductInfoFromReidsCacheCommand(productId);
+		return command.execute();
 	}
-	
+
 	/**
 	 * 从redis中获取店铺信息
-	 * @param productInfo 
+	 * @param shopId
 	 */
 	public ShopInfo getShopInfoFromReidsCache(Long shopId) {
-		String key = "shop_info_" + shopId;
-		String json = jedisCluster.get(key);
-		if (json != null) {
-			return JSONObject.parseObject(json, ShopInfo.class);
-		}
-		return null;
+		GetShopInfoFromReidsCacheCommand command = new GetShopInfoFromReidsCacheCommand(shopId);
+		return command.execute();
 	}
 	
 }
