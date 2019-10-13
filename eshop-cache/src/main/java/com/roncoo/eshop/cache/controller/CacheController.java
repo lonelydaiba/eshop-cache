@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.alibaba.fastjson.JSONObject;
 import com.roncoo.eshop.cache.model.ProductInfo;
 import com.roncoo.eshop.cache.model.ShopInfo;
 import com.roncoo.eshop.cache.prewarm.CachePrewarmThread;
