@@ -19,7 +19,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 @EnableAutoConfiguration
 @SpringBootApplication
 @ComponentScan
-@MapperScan("com.roncoo.eshop.product.ha.mapper")
+@MapperScan("com.daily.eshop.product.ha.mapper")
 public class Application {
  
     @Bean

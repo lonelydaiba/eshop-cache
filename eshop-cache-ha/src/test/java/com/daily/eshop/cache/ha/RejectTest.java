@@ -1,6 +1,7 @@
 package com.daily.eshop.cache.ha;
 
-import com.roncoo.eshop.cache.ha.http.HttpClientUtils;
+
+import com.daily.eshop.cache.ha.http.HttpClientUtils;
 
 public class RejectTest {
 	
@@ -20,7 +21,7 @@ public class RejectTest {
 		
 		@Override
 		public void run() {
-			String response = HttpClientUtils.sendGetRequest("http://localhost:8081/getProductInfo?productId=-2");  
+			String response = HttpClientUtils.sendGetRequest("http://localhost:8081/getProductInfo?productId=-2");
 			System.out.println("第" + (index + 1) + "次请求，结果为：" + response);  
 		}
 		

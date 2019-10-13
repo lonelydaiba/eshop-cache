@@ -4,12 +4,17 @@ import com.daily.eshop.cache.ha.http.HttpClientUtils;
 import com.daily.eshop.cache.ha.hystrix.command.GetBrandNameCommand;
 import com.daily.eshop.cache.ha.hystrix.command.GetCityNameCommand;
 import com.daily.eshop.cache.ha.hystrix.command.GetProductInfoCommand;
+import com.daily.eshop.cache.ha.hystrix.command.GetProductInfosCollapser;
 import com.daily.eshop.cache.ha.model.ProductInfo;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.netflix.hystrix.HystrixCommand;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.Future;
 
 /**
  * 缓存服务的接口
@@ -68,7 +73,7 @@ public class CacheController {
 		
 		return productInfo;
 	}
-	
+
 	/**
 	 * 一次性批量查询多条商品数据的请求
 	 */
@@ -96,15 +101,31 @@ public class CacheController {
 //			}
 //			
 //		});
-		
+
+//		for(String productId : productIds.split(",")) {
+//			GetProductInfoCommand getProductInfoCommand = new GetProductInfoCommand(
+//					Long.valueOf(productId));
+//			ProductInfo productInfo = getProductInfoCommand.execute();
+//			System.out.println(productInfo);
+//			System.out.println(getProductInfoCommand.isResponseFromCache());
+//		}
+
+		List<Future<ProductInfo>> futures = new ArrayList<Future<ProductInfo>>();
+
 		for(String productId : productIds.split(",")) {
-			GetProductInfoCommand getProductInfoCommand = new GetProductInfoCommand(
-					Long.valueOf(productId)); 
-			ProductInfo productInfo = getProductInfoCommand.execute();
-			System.out.println(productInfo);
-			System.out.println(getProductInfoCommand.isResponseFromCache()); 
+			GetProductInfosCollapser getProductInfosCollapser =
+					new GetProductInfosCollapser(Long.valueOf(productId));
+			futures.add(getProductInfosCollapser.queue());
 		}
-		
+
+		try {
+			for(Future<ProductInfo> future : futures) {
+				System.out.println("CacheController的结果：" + future.get());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 		return "success";
 	}
 	

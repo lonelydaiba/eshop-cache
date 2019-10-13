@@ -1,6 +1,6 @@
 package com.daily.eshop.cache.ha.service;
 
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+//import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +15,7 @@ public class UserService {
      * 同步的方式。
      * fallbackMethod定义降级
      */
-    @HystrixCommand(fallbackMethod = "helloFallback")
+    //@HystrixCommand(fallbackMethod = "helloFallback")
     public String getUserId(String name) {
         //int i = 1/0; //此处抛异常，测试服务降级
         return "你好:" + name;
