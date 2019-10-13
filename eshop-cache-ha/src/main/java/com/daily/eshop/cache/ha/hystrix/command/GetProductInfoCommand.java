@@ -27,21 +27,24 @@ public class GetProductInfoCommand extends HystrixCommand<ProductInfo> {
 	private Long productId;
 
 	public GetProductInfoCommand(Long productId) {
-//		super(Setter.withGroupKey(HystrixCommandGroupKey.Factory.asKey("ProductInfoService"))
-//				.andCommandKey(KEY)
-//				.andThreadPoolKey(HystrixThreadPoolKey.Factory.asKey("GetProductInfoPool"))
-//				.andThreadPoolPropertiesDefaults(HystrixThreadPoolProperties.Setter()
-//						.withCoreSize(10)
-//						.withMaxQueueSize(12)
-//						.withQueueSizeRejectionThreshold(15))
-//				.andCommandPropertiesDefaults(HystrixCommandProperties.Setter()
-//						.withCircuitBreakerRequestVolumeThreshold(30)
-//						.withCircuitBreakerErrorThresholdPercentage(40)
-//						.withCircuitBreakerSleepWindowInMilliseconds(3000)
-//						.withExecutionTimeoutInMilliseconds(500)
-//						.withFallbackIsolationSemaphoreMaxConcurrentRequests(30))
-//				);
-		super(HystrixCommandGroupKey.Factory.asKey("ProductInfoServiceGroup"));
+        super(Setter.withGroupKey(HystrixCommandGroupKey.Factory.asKey("ProductInfoService"))
+                .andCommandKey(KEY)
+                .andThreadPoolKey(HystrixThreadPoolKey.Factory.asKey("GetProductInfoPool"))
+                .andThreadPoolPropertiesDefaults(HystrixThreadPoolProperties.Setter()
+                        .withCoreSize(3)
+                        .withMaximumSize(30)
+                        .withAllowMaximumSizeToDivergeFromCoreSize(true)
+                        .withKeepAliveTimeMinutes(1)
+                        .withMaxQueueSize(12)
+                        .withQueueSizeRejectionThreshold(15))
+                .andCommandPropertiesDefaults(HystrixCommandProperties.Setter()
+                        .withCircuitBreakerRequestVolumeThreshold(30)
+                        .withCircuitBreakerErrorThresholdPercentage(40)
+                        .withCircuitBreakerSleepWindowInMilliseconds(3000)
+                        .withExecutionTimeoutInMilliseconds(500)
+                        .withFallbackIsolationSemaphoreMaxConcurrentRequests(30))
+        );
+//		super(HystrixCommandGroupKey.Factory.asKey("ProductInfoService"));
 		this.productId = productId;
 	}
 
